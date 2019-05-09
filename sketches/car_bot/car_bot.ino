@@ -23,13 +23,16 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(LED_BUILTIN, LOW);
   
   distance_cm = sensor.read_cm();
 
   if (distance_cm < 20) {
     
     digitalWrite(LED_BUILTIN, HIGH);
+    
+    motor1.stop();
+    motor2.stop();
+    delay(200);
     
     motor1.backward();
     motor2.backward();
@@ -51,6 +54,9 @@ void loop() {
     
     motor1.forward();
     motor2.forward();
+    delay(100);
   }
+  
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
